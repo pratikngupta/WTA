@@ -21,35 +21,37 @@ Output: 4
 Explanation: The longest increasing path is [3, 4, 5, 6]. Moving diagonally is not allowed.
 """
 
-check = True # check variable to check if all test cases pass
+check = True  # check variable to check if all test cases pass
+
 
 def longest_increasing_path(matrix):
     if not matrix:
         return 0
 
-    m, n = len(matrix), len(matrix[0])
+    rows, cols = len(matrix), len(matrix[0])
     directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
 
-    def dfs(i, j):
-        if dp[i][j] != -1:
-            return dp[i][j]
+    def dfs(row, col):
+        if dp[row][col] != -1:
+            return dp[row][col]
 
         max_path = 1
         for dx, dy in directions:
-            x, y = i + dx, j + dy
-            if 0 <= x < m and 0 <= y < n and matrix[x][y] > matrix[i][j]:
-                max_path = max(max_path, 1 + dfs(x, y))
+            new_row, new_col = row + dx, col + dy
+            if 0 <= new_row < rows and 0 <= new_col < cols and matrix[new_row][new_col] > matrix[row][col]:
+                max_path = max(max_path, 1 + dfs(new_row, new_col))
 
-        dp[i][j] = max_path
+        dp[row][col] = max_path
         return max_path
 
     max_path = 0
-    dp = [[-1 for _ in range(n)] for _ in range(m)]
-    for i in range(m):
-        for j in range(n):
-            max_path = max(max_path, dfs(i, j))
+    dp = [[-1 for _ in range(cols)] for _ in range(rows)]
+    for row in range(rows):
+        for col in range(cols):
+            max_path = max(max_path, dfs(row, col))
 
     return max_path
+
 
 def test_function(test_case):
     # testing case given in the question
@@ -70,15 +72,14 @@ def test_function(test_case):
     print()
 
 
-
 def main():
-    test_function(test_case = ("Testing case given in the question", [[9,9,4],[6,6,8],[2,1,1]], 4))
-    test_function(test_case = ("Testing case given in the question", [[3,4,5],[3,2,6],[2,2,1]], 4))
-    test_function(test_case = ("Example 3:", [[1]], 1))
-    test_function(test_case = ("Example 4:", [[1,2]], 2))
-    test_function(test_case = ("Example 5:", [[1],[2]], 2))
-    test_function(test_case = ("Example 6:", [[1,2],[3,4]], 3))
-    test_function(test_case = ("Example 7:", [[1,2],[4,3]], 4))
+    test_function(test_case=("Testing case given in the question", [[9, 9, 4], [6, 6, 8], [2, 1, 1]], 4))
+    test_function(test_case=("Testing case given in the question", [[3, 4, 5], [3, 2, 6], [2, 2, 1]], 4))
+    test_function(test_case=("Example 3:", [[1]], 1))
+    test_function(test_case=("Example 4:", [[1, 2]], 2))
+    test_function(test_case=("Example 5:", [[1], [2]], 2))
+    test_function(test_case=("Example 6:", [[1, 2], [3, 4]], 3))
+    test_function(test_case=("Example 7:", [[1, 2], [4, 3]], 4))
 
 
 if __name__ == "__main__":

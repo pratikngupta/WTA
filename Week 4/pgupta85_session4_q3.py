@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 """
 Name: Pratik Narendra Gupta
 Program: Software Engineering - 3rd year
@@ -14,7 +16,8 @@ Return the minimum cost of painting all the remaining houses in such a way that 
 if not possible return -1.
 """
 
-check = True # check variable to check if all test cases pass
+check = True  # check variable to check if all test cases pass
+
 
 def minCost(houses, cost, m, n, target):
     memo = {}  # Memoization cache
@@ -68,15 +71,15 @@ def test_case(case):
 
 def main():
     test_case(case=(
-    "Example 1: Given in the question", [0, 0, 0, 0, 0], [[1, 10], [10, 1], [10, 1], [1, 10], [5, 1]], 5, 2, 3, 9))
+        "Example 1: Given in the question", [0, 0, 0, 0, 0], [[1, 10], [10, 1], [10, 1], [1, 10], [5, 1]], 5, 2, 3, 9))
     test_case(case=(
-    "Example 2: Given in the question", [0, 2, 1, 2, 0], [[1, 10], [10, 1], [10, 1], [1, 10], [5, 1]], 5, 2, 3, 11))
+        "Example 2: Given in the question", [0, 2, 1, 2, 0], [[1, 10], [10, 1], [10, 1], [1, 10], [5, 1]], 5, 2, 3, 11))
 
     # other test cases to test the solution
     test_case(case=("Example 3: No painting is possible as all as all house are painted", [3, 1, 2, 3],
                     [[1, 1, 1], [1, 1, 1], [1, 1, 1], [1, 1, 1]], 4, 3, 3, -1))
     test_case(case=(
-    "Example 4: More neighbor than what is possible", [0, 0, 0], [[1, 10, 3], [10, 1, 3], [1, 10, 3]], 3, 3, 4, -1))
+        "Example 4: More neighbor than what is possible", [0, 0, 0], [[1, 10, 3], [10, 1, 3], [1, 10, 3]], 3, 3, 4, -1))
     test_case(case=("Example 5: Less color/price than it is possible", [0, 0, 0, 0, 0], [[1, 10, 3]], 3, 3, 5, -1))
 
 
@@ -92,7 +95,3 @@ if __name__ == '__main__':
 
 # what is the space complexity of the above solution?
 # O(m*n*target)
-
-# can we do better?
-# yes, we can use dynamic programming to solve this problem.
-# we can use a 3D array to store the results of the subproblems.

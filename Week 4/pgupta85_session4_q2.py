@@ -15,7 +15,9 @@ Question 2
 # Return the minimum number of minutes that must elapse until no cell has a fresh orange. If this is impossible, return -1.
 """
 
-check = True # check variable to check if all test cases pass
+check = True  # check variable to check if all test cases pass
+
+
 def rotten_oranges(grid):
     m = len(grid)
     n = len(grid[0])
@@ -62,35 +64,34 @@ def rotten_oranges(grid):
     # while the queue is not empty
     while len(queue) > 0:
 
-            # increment the count variable by 1
-            count += 1
+        # increment the count variable by 1
+        count += 1
 
-            # for each rotten orange in the queue
-            for i in range(len(queue)):
+        # for each rotten orange in the queue
+        for i in range(len(queue)):
 
-                # remove the rotten orange from the queue
-                rotten_orange = queue.pop(0)
+            # remove the rotten orange from the queue
+            rotten_orange = queue.pop(0)
 
-                # get the neighbors of the rotten orange
-                neighbors = get_neighbors(rotten_orange, grid)
+            # get the neighbors of the rotten orange
+            neighbors = get_neighbors(rotten_orange, grid)
 
-                # for each neighbor of the rotten orange
-                for j in range(len(neighbors)):
+            # for each neighbor of the rotten orange
+            for j in range(len(neighbors)):
 
-                    # if the neighbor is a fresh orange
-                    if grid[neighbors[j][0]][neighbors[j][1]] == 1:
+                # if the neighbor is a fresh orange
+                if grid[neighbors[j][0]][neighbors[j][1]] == 1:
 
-                        # if the neighbor has not been visited
-                        if neighbors[j] not in visited:
+                    # if the neighbor has not been visited
+                    if neighbors[j] not in visited:
+                        # add the neighbor to the queue
+                        queue.append(neighbors[j])
 
-                            # add the neighbor to the queue
-                            queue.append(neighbors[j])
+                        # add the neighbor to the visited set
+                        visited.add(neighbors[j])
 
-                            # add the neighbor to the visited set
-                            visited.add(neighbors[j])
-
-                            # set the neighbor to a rotten orange
-                            grid[neighbors[j][0]][neighbors[j][1]] = 2
+                        # set the neighbor to a rotten orange
+                        grid[neighbors[j][0]][neighbors[j][1]] = 2
 
     # if there are fresh oranges, return -1
     for i in range(m):
@@ -100,6 +101,7 @@ def rotten_oranges(grid):
 
     # return the count variable
     return count - 1
+
 
 def get_neighbors(rotten_orange, grid):
     m = len(grid)
@@ -114,6 +116,7 @@ def get_neighbors(rotten_orange, grid):
     if rotten_orange[1] + 1 < n:
         neighbors.append((rotten_orange[0], rotten_orange[1] + 1))
     return neighbors
+
 
 def test_function(test_case):
     grid = test_case[1]
@@ -189,6 +192,7 @@ def main():
     solution = -1
     test_function(test_case=[example, grid, solution])
 
+
 if __name__ == '__main__':
     main()
 
@@ -196,5 +200,3 @@ if __name__ == '__main__':
         print("All Tests Passed")
     else:
         print("Some Tests Failed")
-
-
